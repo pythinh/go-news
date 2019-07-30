@@ -4,6 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/pythinh/go-news/internal/app/home"
+	"github.com/pythinh/go-news/internal/app/types"
 )
 
 type (
@@ -18,21 +20,14 @@ type (
 	}
 )
 
-const (
-	get  = http.MethodGet
-	post = http.MethodPost
-)
-
 // Init all routes
 func Init() (http.Handler, error) {
-	homeView := homeNew()
-	routes := []route{
-		// home
-		{"/", get, homeView.index},
-	}
+	routes := []types.Route{}
+	home.NewRouter(&routes)
+
 	r := mux.NewRouter()
 	for _, rt := range routes {
-		r.HandleFunc(rt.path, rt.handler).Methods(rt.method)
+		r.HandleFunc(rt.Path, rt.Handler).Methods(rt.Method)
 	}
 
 	s := static{"/static/", "web/static"}
