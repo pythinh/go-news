@@ -9,11 +9,6 @@ import (
 )
 
 type (
-	route struct {
-		path    string
-		method  string
-		handler http.HandlerFunc
-	}
 	static struct {
 		prefix string
 		dir    string
