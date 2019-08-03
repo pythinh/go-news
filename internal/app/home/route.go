@@ -18,7 +18,12 @@ func NewRouter(r *[]types.Route) {
 			Method:  get,
 			Handler: newRouter().indexHandler,
 		},
+		{
+			Path:    "/about",
+			Method:  get,
+			Handler: newRouter().aboutHandler,
+		},
 	}
-	
+
 	*r = append(*r, routes...)
 }

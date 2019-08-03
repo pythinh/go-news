@@ -19,3 +19,7 @@ func (h *handler) indexHandler(w http.ResponseWriter, r *http.Request) {
 	vals := val{"Title": "Homepage"}
 	tmpl.ExecuteTemplate(w, "home/index.html", vals)
 }
+
+func (h *handler) aboutHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl.ExecuteTemplate(w, "home/about.html", nil)
+}
