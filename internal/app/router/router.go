@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/pythinh/go-news/internal/app/home"
 	"github.com/pythinh/go-news/internal/app/types"
+	"github.com/pythinh/go-news/internal/pkg/middleware"
 )
 
 type (
@@ -21,6 +22,7 @@ func Init() (http.Handler, error) {
 	home.NewRouter(&routes)
 
 	r := mux.NewRouter()
+	r.Use(middleware.Logging)
 	for _, rt := range routes {
 		r.HandleFunc(rt.Path, rt.Handler).Methods(rt.Method)
 	}
