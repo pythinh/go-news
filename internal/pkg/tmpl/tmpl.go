@@ -8,8 +8,12 @@ import (
 
 // ExecuteTemplate applies the template
 func ExecuteTemplate(w io.Writer, name string, data interface{}) {
-	var tmpls = template.Must(template.ParseGlob("web/template/*.html"))
-	err := tmpls.ExecuteTemplate(w, name, data)
+	rootDir := "web/template/"
+	baseFile := rootDir + "base.html"
+	appFile := rootDir + name
+	
+	var tmpls = template.Must(template.ParseFiles(baseFile, appFile))
+	err := tmpls.Execute(w, data)
 	if err != nil {
 		log.Panic(err)
 	}

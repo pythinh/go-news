@@ -17,5 +17,5 @@ func newRouter() *handler {
 
 func (h *handler) indexHandler(w http.ResponseWriter, r *http.Request) {
 	vals := val{"Title": "Homepage"}
-	tmpl.ExecuteTemplate(w, "index.html", vals)
+	tmpl.ExecuteTemplate(w, "home/index.html", vals)
 }
