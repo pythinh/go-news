@@ -7,26 +7,19 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"time"
 
 	"github.com/pythinh/go-news/internal/app/router"
+	"github.com/pythinh/go-news/internal/app/types"
+	"github.com/pythinh/go-news/internal/pkg/db"
 	"github.com/pythinh/go-news/internal/pkg/env"
 )
 
-type srvConfig struct {
-	HTTP struct {
-		Address           string        `env:"HTTP_ADDRESS" default:""`
-		Port              int           `env:"PORT" default:"8080"`
-		ReadTimeout       time.Duration `env:"HTTP_READ_TIMEOUT" default:"5m"`
-		WriteTimeout      time.Duration `env:"HTTP_WRITE_TIMEOUT" default:"5m"`
-		ReadHeaderTimeout time.Duration `env:"HTTP_READ_HEADER_TIMEOUT" default:"30s"`
-		ShutdownTimeout   time.Duration `env:"HTTP_SHUTDOWN_TIMEOUT" default:"10s"`
-	}
-}
-
 func main() {
-	var conf srvConfig
+	var conf types.Server
 	env.Load(&conf)
+
+	conns := db.Init(&conf)
+	defer conns.Close()
 
 	log.Println("initializing HTTP routing...")
 	routes, err := router.Init()

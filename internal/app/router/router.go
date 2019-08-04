@@ -4,22 +4,22 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/pythinh/go-news/internal/app/article"
 	"github.com/pythinh/go-news/internal/app/home"
 	"github.com/pythinh/go-news/internal/app/types"
 	"github.com/pythinh/go-news/internal/pkg/middleware"
 )
 
-type (
-	static struct {
-		prefix string
-		dir    string
-	}
-)
+type static struct {
+	prefix string
+	dir    string
+}
 
 // Init all routes
 func Init() (http.Handler, error) {
 	routes := []types.Route{}
 	home.NewRouter(&routes)
+	article.NewRouter(&routes)
 
 	r := mux.NewRouter()
 	r.Use(middleware.Logging)
