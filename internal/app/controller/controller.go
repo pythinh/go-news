@@ -24,10 +24,10 @@ type DBConns struct {
 }
 
 // InitRoute all routes
-func InitRoute() (http.Handler, error) {
+func InitRoute(conns *DBConns) (http.Handler, error) {
 	routes := []types.Route{}
 	home.NewRouter(&routes)
-	article.NewRouter(&routes)
+	article.NewRouter(&routes, &conns.Database)
 
 	r := mux.NewRouter()
 	r.Use(middleware.Logging)

@@ -21,7 +21,7 @@ func main() {
 	defer conns.Close()
 
 	log.Println("initializing HTTP routing...")
-	routes, err := controller.InitRoute()
+	routes, err := controller.InitRoute(conns)
 	if err != nil {
 		log.Panicln("failed to init routing, err:", err)
 	}
