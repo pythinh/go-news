@@ -1,4 +1,4 @@
-package home
+package article
 
 import (
 	"net/http"
@@ -7,21 +7,17 @@ import (
 )
 
 const (
-	get = http.MethodGet
+	get  = http.MethodGet
+	post = http.MethodPost
 )
 
 // NewRouter append new router
 func NewRouter(r *[]types.Route) {
 	routes := []types.Route{
 		{
-			Path:    "/",
+			Path:    "/article",
 			Method:  get,
 			Handler: newRouter().indexHandler,
-		},
-		{
-			Path:    "/about",
-			Method:  get,
-			Handler: newRouter().aboutHandler,
 		},
 	}
 
