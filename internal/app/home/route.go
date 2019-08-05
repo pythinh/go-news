@@ -3,7 +3,7 @@ package home
 import (
 	"net/http"
 
-	"github.com/pythinh/go-news/internal/app/types"
+	"github.com/pythinh/go-news/internal/pkg/types"
 )
 
 const (

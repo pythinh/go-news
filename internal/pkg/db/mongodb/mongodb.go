@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/pythinh/go-news/internal/app/types"
+	"github.com/pythinh/go-news/internal/pkg/types"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -23,6 +23,6 @@ func Dial(conf *types.Database) (*mongo.Client, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Println("successfully dialing to MongoDB at: ", conf.Host)
+	log.Println("successfully dialing to MongoDB at:", conf.Host)
 	return client, nil
 }

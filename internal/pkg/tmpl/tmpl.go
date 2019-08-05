@@ -15,6 +15,6 @@ func ExecuteTemplate(w io.Writer, name string, data interface{}) {
 	var tmpls = template.Must(template.ParseFiles(baseFile, appFile))
 	err := tmpls.Execute(w, data)
 	if err != nil {
-		log.Panic(err)
+		log.Panicln(err)
 	}
 }
