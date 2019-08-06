@@ -3,7 +3,7 @@ GO_BUILD_ENV=CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 DOCKER_DIR=deployment/docker
 
 .SILENT:
-all: build docker compose
+all: docker compose
 
 build:
 	$(GO_BUILD_ENV) go build -o $(PROJECT_NAME) main.go
