@@ -2,7 +2,7 @@ package types
 
 import "time"
 
-// Article data
+// Article models
 type Article struct {
 	ID         string    `json:"id,omitempty" bson:"_id"`
 	Author     string    `json:"author,omitempty" bson:"author"`

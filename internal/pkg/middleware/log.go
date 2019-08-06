@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-// Logging log request information
-func Logging(inner http.Handler) http.Handler {
+// Log request information
+func Log(inner http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
 		inner.ServeHTTP(w, r)

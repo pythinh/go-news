@@ -24,6 +24,7 @@ func NewRouter(r *[]types.Route, conns *db.Connections) {
 		log.Panicln("database type not supported:", conns.Type)
 	}
 	srv := newService(repo)
+	newAPI := api.New(srv)
 	routes := []types.Route{
 		// Route
 		{
@@ -35,7 +36,7 @@ func NewRouter(r *[]types.Route, conns *db.Connections) {
 		{
 			Path:    "/api/article",
 			Method:  get,
-			Handler: api.New(srv).GetAll,
+			Handler: newAPI.GetAll,
 		},
 	}
 

@@ -30,7 +30,7 @@ func InitRoute(conns *DBConns) (http.Handler, error) {
 	article.NewRouter(&routes, &conns.Database)
 
 	r := mux.NewRouter()
-	r.Use(middleware.Logging)
+	r.Use(middleware.Log)
 	for _, rt := range routes {
 		r.HandleFunc(rt.Path, rt.Handler).Methods(rt.Method)
 	}
