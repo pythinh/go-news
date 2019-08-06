@@ -16,3 +16,6 @@ gonews
 
 # Third-party libraries
 /vendor
+
+# Volumes docker
+/data

@@ -3,5 +3,14 @@ version: "3.7"
 services:
   app:
     image: gonews:latest
+    network_mode: host
+    depends_on:
+      - mongo
     ports:
       - 8080:8080
+  mongo:
+    image: mongo:latest
+    volumes:
+      - ../../data:/data/db
+    ports:
+      - 27017:27017
